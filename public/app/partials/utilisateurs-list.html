@@ -1,0 +1,34 @@
+﻿			<table class=" table table-striped table-hover table-condensed">
+				<caption>
+					<h4>Liste des utilisateurs référencés</h4>
+				</caption>
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="utilisateur in utilisateurs">
+					<td>{{utilisateur.nom}}</td>
+					<td>{{utilisateur.prenom}}</td>
+					<td>
+						<div class="btn-group">
+							<a href="#/utilisateurs/{{utilisateur.id}}" class="btn btn-primary">Consulter</a>
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+								<span class="caret"></span>
+								<span class="sr-only">Toggle Dropdown</span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#/utilisateurs/{{utilisateur.id}}/edit">Editer</a></li>
+								<li class="divider"></li>
+								<li><a href="#/utilisateurs/{{utilisateur.id}}/delete">Supprimer</a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+

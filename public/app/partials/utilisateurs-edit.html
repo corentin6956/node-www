@@ -1,0 +1,43 @@
+﻿			<div class="btn-group">
+				<a href="#/utilisateurs/{{utilisateur.id}}" class="btn btn-primary">Consulter</a>
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+					<span class="sr-only">Toggle Dropdown</span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#/utilisateurs/{{utilisateur.id}}/edit">Editer</a></li>
+					<li class="divider"></li>
+					<li><a href="#/utilisateurs/{{utilisateur.id}}/delete">Supprimer</a></li>
+				</ul>
+			</div>
+			
+			<form novalidate class="form-horizontal"">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nom</label>
+				<div class="col-sm-6">
+				  <input type="text" class="form-control" ng-model="utilisateur.nom" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Prenom</label>
+				<div class="col-sm-6">
+				  <input type="text" class="form-control" ng-model="utilisateur.prenom" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Login</label>
+				<div class="col-sm-6">
+				  <input type="text" class="form-control" ng-model="utilisateur.login" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Password</label>
+				<div class="col-sm-6">
+				  <input type="text" class="form-control" ng-model="utilisateur.password" />
+				</div>
+			</div>
+				<button ng-click="reset()">RESET</button>
+				<button ng-click="sauver()">SAVE</button>
+			</form>
+
+			

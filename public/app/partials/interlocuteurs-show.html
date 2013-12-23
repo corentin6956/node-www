@@ -1,0 +1,29 @@
+﻿			<div class="btn-group">
+				<a href="#/interlocuteurs/{{interlocuteur.id}}" class="btn btn-primary">Consulter</a>
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+					<span class="sr-only">Toggle Dropdown</span>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#/interlocuteurs/{{interlocuteur.id}}/edit">Editer</a></li>
+					<li class="divider"></li>
+					<li><a href="#/interlocuteurs/{{interlocuteur.id}}/delete">Supprimer</a></li>
+				</ul>
+			</div>
+			
+			<form novalidate class="form-horizontal"">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nom</label>
+				<div class="col-sm-6">
+				  <p class="form-control-static">{{interlocuteur.name}}</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Age</label>
+				<div class="col-sm-6">
+				  <p class="form-control-static">{{interlocuteur.age}}</p>
+				</div>
+			</div>
+			</form>
+
+			
