@@ -7,7 +7,7 @@
   
 // controllers.MyCtrl2 = function() {  };
 
-consulteoApp.controller('UtilisateursCtrl', ['$scope', '$routeParams', 'utilisateursSrvc', '$location', function($scope, $routeParams, utilisateursSrvc, $location) {
+consulteoApp.controller('UtilisateursCtrl', ['$scope', '$routeParams', '$location', 'utilisateursSrvc', function($scope, $routeParams, $location, utilisateursSrvc) {
 	
     // Instantiate an object to store your scope data in (Best Practices)
    
