@@ -125,7 +125,9 @@ exports.updateUser = function(req, res) {
 	
 	pg.connect(connectionString, function(err, client, done) {
 		//Find User By Id
-		client.query("UPDATE utilisateurs SET nom='$1', prenom='$2', login='$3', password='$4' WHERE id=$5", [utilisateur.nom, utilisateur.prenom, utilisateur.login, utilisateur.password, id], function(err, result) {
+		var q = "UPDATE utilisateurs SET nom='"+utilisateur.nom+"', prenom='"+utilisateur.prenom+"', login='"+utilisateur.login+"', password='"+utilisateur.password+"' WHERE id="+id+" RETURNING *"; 
+		console.log(q);
+		client.query(q, function(err, result) {
 			done();
 			if(err) return console.error(err);
 			console.log("Row count: " + result.rows.length);
