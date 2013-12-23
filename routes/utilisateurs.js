@@ -1,6 +1,6 @@
 var pg = require('pg');
 
-var connectionString = process.env.DATABASE_URL || "postgres://zhpcewtvfnlrjf:B-lDznsRhq54VND-blcyyMcUKL@ec2-54-225-255-208.compute-1.amazonaws.com:5432:/d5mdkgb32mtt37"
+var connectionString = "postgres://zhpcewtvfnlrjf:B-lDznsRhq54VND-blcyyMcUKL@ec2-54-225-255-208.compute-1.amazonaws.com:5432/d5mdkgb32mtt37"
 
 pg.connect(connectionString , function(err, client, done) {
 	//create the table
