@@ -34,7 +34,7 @@ consulteoApp.controller('UtilisateursCtrl', ['$scope', '$routeParams', '$locatio
 	
   }]);
   
-consulteoApp.controller('UtilisateursNewCtrl', ['$scope', 'utilisateursSrvc', function($scope, utilisateursSrvc) {
+consulteoApp.controller('UtilisateursNewCtrl', ['$scope', '$location', 'utilisateursSrvc', function($scope, $location, utilisateursSrvc) {
 	$scope.utilisateur = new utilisateursSrvc();
 	//$scope.utilisateur.nom = "Doe";
 	//$scope.utilisateur.prenom = "Bob";
