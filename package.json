@@ -4,9 +4,10 @@
   "dependencies": {
     "express": "~3.4.7",
     "logfmt": "~0.18.1",
-	"ejs": "~0.8.5",
+    "ejs": "~0.8.5",
     "redis": "~0.10.0",
-    "contracts": "~0.4.0"
+    "contracts": "~0.4.0",
+    "pg": "~2.9.0"
   },
   "main": "app.js",
   "devDependencies": {},
