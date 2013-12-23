@@ -16,11 +16,11 @@ app.configure(function () {
 
 
 // Routes pour les utilisateurs
-/*app.get('/utilisateurs', utilisateurs.findAll);
-app.get('/utilisateurs/:id', utilisateurs.findById);
-app.post('/utilisateurs', utilisateurs.addWine);
-app.put('/utilisateurs/:id', utilisateurs.updateWine);
-app.delete('/utilisateurs/:id', utilisateurs.deleteWine);*/
+app.get('/utilisateurs', utilisateurs.findAllUsers);
+app.get('/utilisateurs/:id', utilisateurs.findUserById);
+app.post('/utilisateurs', utilisateurs.addUser);
+app.put('/utilisateurs/:id', utilisateurs.updateUser);
+app.delete('/utilisateurs/:id', utilisateurs.deleteUser);
 
 // Serveur statique
 app.use(express.static(__dirname + '/public'));

@@ -1,11 +1,16 @@
-var dbpg = require('./db-pg');
+var pg = require('pg');
 
-dbpg.execute('CREATE TABLE IF NOT EXISTS utilisateurs (id integer, nom varchar(255), prenom varchar(255), login varchar(255), password varchar(255))', function(err, result) {
-	done();
-	if(err) return console.error(err);
-	console.log(JSON.stringify(result.row));
+var connectionString = "postgres://zhpcewtvfnlrjf:B-lDznsRhq54VND-blcyyMcUKL@ec2-54-225-255-208.compute-1.amazonaws.com:5432/d5mdkgb32mtt37"
+
+/*pg.connect(connectionString, function(err, client, done) {
+	//create the table
+	client.query('CREATE TABLE IF NOT EXISTS utilisateurs (id integer, nom varchar(255), prenom varchar(255), login varchar(255), password varchar(255))', function(err, result) {
+		done();
+		if(err) return console.error(err);
+		console.log(JSON.stringify(result.row));
+	});
 });
-
+/*
 dbpg.query("INSERT INTO utilisateurs (nom, prenom, login, password) values($1, $2, $3, $4)", ['MORIN', 'Jean', 'jmorin', '12345'], function(err, result) {
 	done();
 	if(err) return console.error(err);
@@ -16,7 +21,7 @@ dbpg.execute('SELECT * FROM utilisateurs', function(err, result) {
 	done();
 	if(err) return console.error(err);
 	console.log(JSON.stringify(result.row));
-});
+});*/
 
 /*
   client.query('SELECT * FROM your_table', function(err, result) {
@@ -43,73 +48,80 @@ db.open(function(err, db) {
             }
         });
     }
-});
+});*/
  
-exports.findById = function(req, res) {
+exports.findUserById = function(req, res) {
     var id = req.params.id;
-    console.log('Retrieving wine: ' + id);
-    db.collection('wines', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            res.send(item);
-        });
-    });
+    console.log('Retrieving utilisateur: ' + id);
+	
+	pg.connect(connectionString, function(err, client, done) {
+		//Find User By Id
+		client.query('SELECT * FROM utilisateurs WHERE id=$1', [id], function(err, result) {
+			done();
+			if(err) return console.error(err);
+			console.log(JSON.stringify(result.row));
+			res.send(JSON.stringify(result.row)); 
+		});
+	});
 };
  
-exports.findAll = function(req, res) {
-    db.collection('wines', function(err, collection) {
-        collection.find().toArray(function(err, items) {
-            res.send(items);
-        });
-    });
+exports.findAllUsers = function(req, res) {
+	pg.connect(connectionString, function(err, client, done) {
+		//Find User By Id
+		client.query('SELECT * FROM utilisateurs', function(err, result) {
+			done();
+			if(err) return console.error(err);
+			console.log(JSON.stringify(result.row));
+			res.send(JSON.stringify(result.row)); 
+		});
+	});
+};
+
+exports.addUser = function(req, res) {
+    var utilisateur = req.body;
+    console.log('Adding utilisateur: ' + JSON.stringify(utilisateur));
+    
+	pg.connect(connectionString, function(err, client, done) {
+		//Find User By Id
+		client.query("INSERT INTO utilisateurs (nom, prenom, login, password) values('$1', '$2', '$3', '$4')", [utilisateur.nom, utilisateur.prenom, utilisateur.login, utilisateur.password], function(err, result) {
+			done();
+			if(err) return console.error(err);
+			console.log(JSON.stringify(result.row));
+			res.send(JSON.stringify(result.row)); 
+		});
+	});
 };
  
-exports.addWine = function(req, res) {
-    var wine = req.body;
-    console.log('Adding wine: ' + JSON.stringify(wine));
-    db.collection('wines', function(err, collection) {
-        collection.insert(wine, {safe:true}, function(err, result) {
-            if (err) {
-                res.send({'error':'An error has occurred'});
-            } else {
-                console.log('Success: ' + JSON.stringify(result[0]));
-                res.send(result[0]);
-            }
-        });
-    });
-}
- 
-exports.updateWine = function(req, res) {
+exports.updateUser = function(req, res) {
     var id = req.params.id;
-    var wine = req.body;
-    console.log('Updating wine: ' + id);
-    console.log(JSON.stringify(wine));
-    db.collection('wines', function(err, collection) {
-        collection.update({'_id':new BSON.ObjectID(id)}, wine, {safe:true}, function(err, result) {
-            if (err) {
-                console.log('Error updating wine: ' + err);
-                res.send({'error':'An error has occurred'});
-            } else {
-                console.log('' + result + ' document(s) updated');
-                res.send(wine);
-            }
-        });
-    });
-}
+    var utilisateur = req.body;
+    console.log('Updating utilisateur: ' + id);
+    console.log(JSON.stringify(utilisateur));
+	
+	pg.connect(connectionString, function(err, client, done) {
+		//Find User By Id
+		client.query("UPDATE utilisateurs SET nom='$1', prenom='$2', login='$3', password='$4' WHERE id=$5", [utilisateur.nom, utilisateur.prenom, utilisateur.login, utilisateur.password, id], function(err, result) {
+			done();
+			if(err) return console.error(err);
+			console.log(JSON.stringify(result.row));
+			res.send(JSON.stringify(result.row)); 
+		});
+	});
+};
  
-exports.deleteWine = function(req, res) {
+exports.deleteUser = function(req, res) {
     var id = req.params.id;
-    console.log('Deleting wine: ' + id);
-    db.collection('wines', function(err, collection) {
-        collection.remove({'_id':new BSON.ObjectID(id)}, {safe:true}, function(err, result) {
-            if (err) {
-                res.send({'error':'An error has occurred - ' + err});
-            } else {
-                console.log('' + result + ' document(s) deleted');
-                res.send(req.body);
-            }
-        });
-    });
-}
+    console.log('Deleting utilisateur: ' + id);
+	pg.connect(connectionString, function(err, client, done) {
+		//Find User By Id
+		client.query('DELETE FROM utilisateurs WHERE id=$1', [id], function(err, result) {
+			done();
+			if(err) return console.error(err);
+			console.log(JSON.stringify(result.row));
+			res.send(JSON.stringify(result.row)); 
+		});
+	});
+};
  
 /*--------------------------------------------------------------------------------------------------------------------*/
 // Populate database with sample data -- Only used once: the first time the application is started.
