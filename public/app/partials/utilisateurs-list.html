@@ -14,17 +14,10 @@
 					<td>{{utilisateur.nom}}</td>
 					<td>{{utilisateur.prenom}}</td>
 					<td>
-						<div class="btn-group">
+						<div class="btn-group">							
 							<a href="#/utilisateurs/{{utilisateur.id}}" class="btn btn-primary">Consulter</a>
-							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-								<span class="caret"></span>
-								<span class="sr-only">Toggle Dropdown</span>
-							</button>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#/utilisateurs/{{utilisateur.id}}/edit">Editer</a></li>
-								<li class="divider"></li>
-								<li><a ng-click="delete({{utilisateur.id}})">Supprimer</a></li>
-							</ul>
+							<a href="#/utilisateurs/{{utilisateur.id}}/edit" class="btn btn-primary">Editer</a>
+							<button type="button" class="btn btn-primary" ng-click="delete({{utilisateur.id}})">Supprimer</button>
 						</div>
 					</td>
 				</tr>
