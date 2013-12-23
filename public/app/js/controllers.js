@@ -34,15 +34,18 @@ consulteoApp.controller('UtilisateursCtrl', ['$scope', '$routeParams', '$locatio
 	
   }]);
   
-consulteoApp.controller('UtilisateursNewCtrl', ['$scope', '$location', 'utilisateursSrvc', function($scope, $location, utilisateursSrvc) {
+consulteoApp.controller('UtilisateursNewCtrl', ['$scope', '$location', 'utilisateursSrvc', function($scope, $location, utilisateursSrvc, u, getResponseHeaders) {
 	$scope.utilisateur = new utilisateursSrvc();
 	//$scope.utilisateur.nom = "Doe";
 	//$scope.utilisateur.prenom = "Bob";
 	//alert($scope.utilisateur.nom);
 	// Fonction pour sauver
 	$scope.sauver = function() {		
-		$scope.utilisateur.$save();
-		$location.path('/utilisateurs/'+$scope.utilisateur.id);
+		$scope.utilisateur.$save(function(u, putResponseHeaders) {
+			//u => saved user object
+			//putResponseHeaders => $http header getter
+			$location.path('/utilisateurs/'+u.id);
+		});		
 	}	
   }]);
 
