@@ -1,6 +1,6 @@
 var logfmt = require("logfmt");
-var express = require('express')
-  , app = module.exports = express.createServer()
+var express = require("express");
+var app = express();
 
 app.configure(function () {
   app.set('views', __dirname + '/views');

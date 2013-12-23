@@ -1,9 +1,9 @@
-var express = require('express')
-  , m = require('./middleware')
+var express = require("express");
+var m = require('./middleware');
 
 // Instanciated module
 module.exports = function () {
-  var app = express.createServer();
+  var app = express();
 
   app.db = require('./db')();
   app.on('close', app.db.close);
