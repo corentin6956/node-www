@@ -59,7 +59,7 @@ exports.findUserById = function(req, res) {
 		client.query('SELECT * FROM utilisateurs WHERE id=$1', [id], function(err, result) {
 			done();
 			if(err) return console.error(err);
-			console.log("Row count: ' + result.rows.length);
+			console.log("Row count: " + result.rows.length);
 			for (var i = 0; i < result.rows.length; i++) {
                 var row = result.rows[i];
                 console.log("id: " + row.id);
