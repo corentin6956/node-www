@@ -90,7 +90,7 @@ exports.addUser = function(req, res) {
     
 	pg.connect(connectionString, function(err, client, done) {
 		//Find User By Id
-		var q = 'INSERT INTO utilisateurs (nom, prenom, login, password) VALUES (\''+utilisateur.nom+'\', \''+utilisateur.prenom+'\', \''+utilisateur.login+'\', \''+utilisateur.password+'\')'; 
+		var q = 'INSERT INTO utilisateurs (nom, prenom, login, password) VALUES (\''+utilisateur.nom+'\', \''+utilisateur.prenom+'\', \''+utilisateur.login+'\', \''+utilisateur.password+'\') RETURNING *'; 
 		console.log(q);
 		client.query(q, function(err, result) {
 			done();
