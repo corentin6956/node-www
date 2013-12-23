@@ -102,8 +102,15 @@ exports.addUser = function(req, res) {
 		client.query(q, function(err, result) {
 			done();
 			if(err) return console.error(err);
-			console.log(JSON.stringify(result.row));
-			res.send(JSON.stringify(result.row)); 
+			console.log("Row count: " + result.rows.length);
+			for (var i = 0; i < result.rows.length; i++) {
+                var row = result.rows[i];
+                console.log("id: " + row.id);
+                console.log("author: " + row.nom);
+                console.log("content: " + row.prenom);
+            }
+			/*console.log(JSON.stringify(result.row));
+			res.send(JSON.stringify(result.row)); */
 		});
 	});
 };
