@@ -7,7 +7,7 @@
   
 // controllers.MyCtrl2 = function() {  };
 
-consulteoApp.controller('UtilisateursCtrl', ['$scope', '$routeParams', 'utilisateursSrvc', function($scope, $routeParams, utilisateursSrvc) {
+consulteoApp.controller('UtilisateursCtrl', ['$scope', '$routeParams', 'utilisateursSrvc', '$location', function($scope, $routeParams, utilisateursSrvc, $location) {
 	
     // Instantiate an object to store your scope data in (Best Practices)
    
@@ -28,6 +28,7 @@ consulteoApp.controller('UtilisateursCtrl', ['$scope', '$routeParams', 'utilisat
 	// Fonction pour sauver
 	$scope.sauver = function() {
 		$scope.utilisateur.$save();
+		$location.path('/utilisateurs/'+$scope.utilisateur.id);
 	}
 	
 	
@@ -41,6 +42,7 @@ consulteoApp.controller('UtilisateursNewCtrl', ['$scope', 'utilisateursSrvc', fu
 	// Fonction pour sauver
 	$scope.sauver = function() {		
 		$scope.utilisateur.$save();
+		$location.path('/utilisateurs/'+$scope.utilisateur.id);
 	}	
   }]);
 
