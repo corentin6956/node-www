@@ -4,19 +4,29 @@ var connectionString = process.env.DATABASE_URL || "postgres://zhpcewtvfnlrjf:B-
 
 pg.connect(connectionString , function(err, client, done) {
 	//create the table
-	client.query('CREATE TABLE IF NOT EXISTS utilisateurs (id integer, nom varchar(255), prenom varchar(255), login varchar(255), password varchar(255))');
-
-	//insert data 
-	client.query("INSERT INTO utilisateurs (nom, prenom, login, password) values($1, $2, $3, $4)", ['MORIN', 'Jean', 'jmorin', '12345']);
-
-	//select data 
-	client.query('SELECT * FROM utilisateurs', function(err, result) {
+	client.query('CREATE TABLE IF NOT EXISTS utilisateurs (id integer, nom varchar(255), prenom varchar(255), login varchar(255), password varchar(255))', function(err, result) {
+		done();
 		if(err) return console.error(err);
 		console.log(JSON.stringify(result.row));
 	});
-	
-	//this is telling the pg that we are done with this client, it can be returned to the pool of clients managed by pg! 
-	done();
+});
+
+pg.connect(connectionString , function(err, client, done) {	
+	//insert data 
+	client.query("INSERT INTO utilisateurs (nom, prenom, login, password) values($1, $2, $3, $4)", ['MORIN', 'Jean', 'jmorin', '12345'], function(err, result) {
+		done();
+		if(err) return console.error(err);
+		console.log(JSON.stringify(result.row));
+	});
+});
+
+pg.connect(connectionString , function(err, client, done) {
+	//select data 
+	client.query('SELECT * FROM utilisateurs', function(err, result) {
+		done();
+		if(err) return console.error(err);
+		console.log(JSON.stringify(result.row));
+	});
 });
 /*
   client.query('SELECT * FROM your_table', function(err, result) {
