@@ -7,7 +7,7 @@
   
 // controllers.MyCtrl2 = function() {  };
 
-consulteoApp.controller('UtilisateursCtrl', ['$scope', '$routeParams', '$location', 'utilisateursSrvc', function($scope, $routeParams, $location, utilisateursSrvc) {
+consulteoApp.controller('UtilisateursCtrl', ['$scope', '$routeParams', '$location', 'utilisateursSrvc', function($scope, $routeParams, $location, utilisateursSrvc, u, getResponseHeaders) {
 	
     // Instantiate an object to store your scope data in (Best Practices)
    
@@ -27,10 +27,31 @@ consulteoApp.controller('UtilisateursCtrl', ['$scope', '$routeParams', '$locatio
 	
 	// Fonction pour sauver
 	$scope.sauver = function() {
-		$scope.utilisateur.$save();
-		$location.path('/utilisateurs/'+$scope.utilisateur.id);
+		$scope.utilisateur.$save(function(u, putResponseHeaders) {
+			//u => saved user object
+			//putResponseHeaders => $http header getter
+			$location.path('/utilisateurs/'+u.id);
+		});		
 	}
 	
+	// Fonction pour supprimer
+    $scope.delete = function (id) {
+        if (!confirm('Confirm delete')) {
+            return;
+        }
+
+        utilisateursSrvc.delete({id: id}, {}, function (data) {
+            $location.path('/utilisateurs');
+        });
+    }
+	
+	/*$scope.supprimer = function() {
+		$scope.utilisateur.$delete(function(u, putResponseHeaders) {
+			//u => saved user object
+			//putResponseHeaders => $http header getter
+			$location.path('/utilisateurs');
+		});		
+	}*/
 	
   }]);
   
