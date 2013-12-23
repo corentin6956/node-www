@@ -10,7 +10,7 @@
 
 consulteoApp.factory('utilisateursSrvc', ['$resource', 
 	function($resource) {
-		return $resource('http://polar-basin-9014.herokuapp.com/utilisateurs/:utilisateurId', { utilisateurId: '@id' });
+		return $resource('http://arcane-wildwood-6184.herokuapp.com/utilisateurs/:utilisateurId', { utilisateurId: '@id' });
 	}]);
   
  // consulteoApp.factory('interlocuteursSrvc', ['$http', function($http) {
