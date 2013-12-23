@@ -1,16 +1,19 @@
 var dbpg = require('./db-pg');
 
-dbpg.execQ('CREATE TABLE IF NOT EXISTS utilisateurs (id integer, nom varchar(255), prenom varchar(255), login varchar(255), password varchar(255))', , function(err, result) {
+dbpg.execute('CREATE TABLE IF NOT EXISTS utilisateurs (id integer, nom varchar(255), prenom varchar(255), login varchar(255), password varchar(255))', function(err, result) {
+	done();
 	if(err) return console.error(err);
 	console.log(JSON.stringify(result.row));
 });
 
-dbpg.execQ("INSERT INTO utilisateurs (nom, prenom, login, password) values($1, $2, $3, $4)", ['MORIN', 'Jean', 'jmorin', '12345'], function(err, result) {
+dbpg.query("INSERT INTO utilisateurs (nom, prenom, login, password) values($1, $2, $3, $4)", ['MORIN', 'Jean', 'jmorin', '12345'], function(err, result) {
+	done();
 	if(err) return console.error(err);
 	console.log(JSON.stringify(result.row));
 });
 
-dbpg.execQ('SELECT * FROM utilisateurs', , function(err, result) {
+dbpg.execute('SELECT * FROM utilisateurs', function(err, result) {
+	done();
 	if(err) return console.error(err);
 	console.log(JSON.stringify(result.row));
 });

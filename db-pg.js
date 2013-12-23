@@ -2,11 +2,17 @@ var pg = require('pg');
 
 var connectionString = "postgres://zhpcewtvfnlrjf:B-lDznsRhq54VND-blcyyMcUKL@ec2-54-225-255-208.compute-1.amazonaws.com:5432/d5mdkgb32mtt37"
 
-exports.execQ = function(reqsql, reqattr, res) {
+exports.execute = function(reqsql, res) {
 	pg.connect(connectionString, function(err, client, done) {
 		//create the table
-		if(reqattr === undefined) { client.query(reqsql, res); }
-		else { client.query(reqsql, reqattr, res); }
+		client.query(reqsql, res);
+	});
+};
+
+exports.query = function(reqsql, reqattr, res) {
+	pg.connect(connectionString, function(err, client, done) {
+		//create the table
+		client.query(reqsql, reqattr, res);
 	});
 };
 
