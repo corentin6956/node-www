@@ -7,15 +7,24 @@ var app = express();
 // Logs
 app.use(logfmt.requestLogger());
 
+app.configure(function () {
+    //app.use(express.logger('dev'));     /* 'default', 'short', 'tiny', 'dev' */
+    app.use(express.bodyParser());
+});
+ 
+
 // Serveur statique
 //app.use(express.static(__dirname + '/public'));
 
 // Routes pour les utilisateurs
 app.get('/utilisateurs', utilisateurs.findAll);
 app.get('/utilisateurs/:id', utilisateurs.findById);
+app.post('/utilisateurs', utilisateurs.addWine);
+app.put('/utilisateurs/:id', utilisateurs.updateWine);
+app.delete('/utilisateurs/:id', utilisateurs.deleteWine);
 
 // Montage de l'API REST sur /bookmarks
-app.use('/utilisateurs', app.utilisateurs_app = require('./utilisateurs-rest')());
+//app.use('/utilisateurs', app.utilisateurs_app = require('./utilisateurs-rest')());
 
 
 
