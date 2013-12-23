@@ -20,6 +20,7 @@ app.get('/utilisateurs', utilisateurs.findAllUsers);
 app.get('/utilisateurs/:id', utilisateurs.findUserById);
 app.post('/utilisateurs', utilisateurs.addUser);
 app.put('/utilisateurs/:id', utilisateurs.updateUser);
+app.post('/utilisateurs/:id', utilisateurs.updateUser);
 app.delete('/utilisateurs/:id', utilisateurs.deleteUser);
 
 // Serveur statique
