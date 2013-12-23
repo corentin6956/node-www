@@ -128,8 +128,15 @@ exports.updateUser = function(req, res) {
 		client.query("UPDATE utilisateurs SET nom='$1', prenom='$2', login='$3', password='$4' WHERE id=$5", [utilisateur.nom, utilisateur.prenom, utilisateur.login, utilisateur.password, id], function(err, result) {
 			done();
 			if(err) return console.error(err);
-			console.log(JSON.stringify(result.row));
-			res.send(JSON.stringify(result.row)); 
+			console.log("Row count: " + result.rows.length);
+			for (var i = 0; i < result.rows.length; i++) {
+                var row = result.rows[i];
+                /*console.log("id: " + row.id);
+                console.log("author: " + row.nom);
+                console.log("content: " + row.prenom);*/
+				console.log(JSON.stringify(row));
+				res.send(JSON.stringify(row));
+            }	
 		});
 	});
 };
@@ -142,8 +149,15 @@ exports.deleteUser = function(req, res) {
 		client.query('DELETE FROM utilisateurs WHERE id=$1', [id], function(err, result) {
 			done();
 			if(err) return console.error(err);
-			console.log(JSON.stringify(result.row));
-			res.send(JSON.stringify(result.row)); 
+			console.log("Row count: " + result.rows.length);
+			for (var i = 0; i < result.rows.length; i++) {
+                var row = result.rows[i];
+                /*console.log("id: " + row.id);
+                console.log("author: " + row.nom);
+                console.log("content: " + row.prenom);*/
+				console.log(JSON.stringify(row));
+				res.send(JSON.stringify(row));
+            }	
 		});
 	});
 };
