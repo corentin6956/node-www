@@ -35,7 +35,7 @@ consulteoApp.controller('UtilisateursCtrl', ['$scope', '$routeParams', '$locatio
 	}
 	
 	// Fonction pour supprimer
-    $scope.delete = function (id) {
+    $scope.supprimer = function (id) {
         if (!confirm('Confirm delete')) {
             return;
         }
