@@ -7,7 +7,7 @@
 				<ul class="dropdown-menu" role="menu">
 					<li><a href="#/utilisateurs/{{utilisateur.id}}/edit">Editer</a></li>
 					<li class="divider"></li>
-					<li><a href="#/utilisateurs/{{utilisateur.id}}/delete">Supprimer</a></li>
+					<li><a href ng-click="delete({{utilisateur.id}})">Supprimer</a></li>
 				</ul>
 			</div>
 			
@@ -36,7 +36,7 @@
 				  <input type="text" class="form-control" ng-model="utilisateur.password" />
 				</div>
 			</div>
-				<button class="btn btn-primary" ng-click="reset()">RESET</button>
+				<button class="btn btn-primary" ng-click="reset()">Reset</button>
 				<button class="btn btn-primary" ng-click="sauver()">Sauver</button>
 			</form>
 

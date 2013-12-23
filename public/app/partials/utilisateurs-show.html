@@ -7,7 +7,7 @@
 				<ul class="dropdown-menu" role="menu">
 					<li><a href="#/utilisateurs/{{utilisateur.id}}/edit">Editer</a></li>
 					<li class="divider"></li>
-					<li><a href="#/utilisateurs/{{utilisateur.id}}/delete">Supprimer</a></li>
+					<li><a href ng-click="delete({{utilisateur.id}})">Supprimer</a></li>
 				</ul>
 			</div>
 			
