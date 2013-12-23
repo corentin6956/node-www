@@ -13,8 +13,8 @@ app.configure(function () {
 });
  
 
-// Serveur statique
-//app.use(express.static(__dirname + '/public'));
+
+
 
 // Routes pour les utilisateurs
 app.get('/utilisateurs', utilisateurs.findAll);
@@ -23,6 +23,8 @@ app.post('/utilisateurs', utilisateurs.addWine);
 app.put('/utilisateurs/:id', utilisateurs.updateWine);
 app.delete('/utilisateurs/:id', utilisateurs.deleteWine);
 
+// Serveur statique
+app.use(express.static(__dirname + '/public'));
 // Montage de l'API REST sur /bookmarks
 //app.use('/utilisateurs', app.utilisateurs_app = require('./utilisateurs-rest')());
 
