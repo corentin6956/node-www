@@ -1,19 +1,14 @@
-var db-pg = require('../db-pg');
+var pg = require('pg');
 
-db-pg.execQ('CREATE TABLE IF NOT EXISTS utilisateurs (id integer, nom varchar(255), prenom varchar(255), login varchar(255), password varchar(255))', , function(err, result) {
-	if(err) return console.error(err);
-	console.log(JSON.stringify(result.row));
-});
+var connectionString = "postgres://zhpcewtvfnlrjf:B-lDznsRhq54VND-blcyyMcUKL@ec2-54-225-255-208.compute-1.amazonaws.com:5432/d5mdkgb32mtt37"
 
-db-pg.execQ("INSERT INTO utilisateurs (nom, prenom, login, password) values($1, $2, $3, $4)", ['MORIN', 'Jean', 'jmorin', '12345'], function(err, result) {
-	if(err) return console.error(err);
-	console.log(JSON.stringify(result.row));
-});
-
-db-pg.execQ('SELECT * FROM utilisateurs', , function(err, result) {
-	if(err) return console.error(err);
-	console.log(JSON.stringify(result.row));
-});
+exports.execQ = function(reqsql, reqattr, res) {
+	pg.connect(connectionString, function(err, client, done) {
+		//create the table
+		if(reqattr === undefined) { client.query(reqsql, res); }
+		else { client.query(reqsql, reqattr, res); }
+	});
+};
 
 /*
   client.query('SELECT * FROM your_table', function(err, result) {
