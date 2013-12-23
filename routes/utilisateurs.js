@@ -62,12 +62,12 @@ exports.findUserById = function(req, res) {
 			console.log("Row count: " + result.rows.length);
 			for (var i = 0; i < result.rows.length; i++) {
                 var row = result.rows[i];
-                console.log("id: " + row.id);
+                /*console.log("id: " + row.id);
                 console.log("author: " + row.nom);
-                console.log("content: " + row.prenom);
-            }
-			/*console.log(JSON.stringify(result.row));
-			res.send(JSON.stringify(result.row)); */
+                console.log("content: " + row.prenom);*/
+				console.log(JSON.stringify(row));
+				res.send(JSON.stringify(row));
+            }			
 		});
 	});
 };
@@ -79,12 +79,14 @@ exports.findAllUsers = function(req, res) {
 			done();
 			if(err) return console.error(err);
 			console.log("Row count: " + result.rows.length);
-			for (var i = 0; i < result.rows.length; i++) {
+			console.log(JSON.stringify(result.rows));
+			res.send(JSON.stringify(result.rows));
+			/*for (var i = 0; i < result.rows.length; i++) {
                 var row = result.rows[i];
                 console.log("id: " + row.id);
                 console.log("author: " + row.nom);
                 console.log("content: " + row.prenom);
-            }
+            }*/
 			/*console.log(JSON.stringify(result.row));
 			res.send(JSON.stringify(result.row)); */
 		});
@@ -110,8 +112,7 @@ exports.addUser = function(req, res) {
                 console.log("content: " + row.prenom);*/
 				console.log(JSON.stringify(row));
 				res.send(JSON.stringify(row));
-            }
-			
+            }			
 		});
 	});
 };
