@@ -152,14 +152,9 @@ exports.deleteUser = function(req, res) {
 			done();
 			if(err) return console.error(err);
 			console.log("Row count: " + result.rows.length);
-			for (var i = 0; i < result.rows.length; i++) {
-                var row = result.rows[i];
-                /*console.log("id: " + row.id);
-                console.log("author: " + row.nom);
-                console.log("content: " + row.prenom);*/
-				console.log(JSON.stringify(row));
-				res.send(JSON.stringify(row));
-            }	
+			res.writeHead(200, {
+			  'Content-Length': '0',
+			  'Content-Type': 'text/plain' });
 		});
 	});
 };
