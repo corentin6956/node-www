@@ -19,9 +19,9 @@
 					<td>{{utilisateur.prenom}}</td>
 					<td>
 						<div class="btn-group">							
-							<a href="#/utilisateurs/{{utilisateur.id}}" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a>
-							<a href="#/utilisateurs/{{utilisateur.id}}/edit" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
-							<a href="#" class="btn btn-danger" ng-click="supprimer(utilisateur.id)" title="delete"><i class="glyphicon glyphicon-trash"></i></a>
+							<a href="#/utilisateurs/{{utilisateur.id}}" class="btn btn-primary" title="Consulter"><i class="glyphicon glyphicon-eye-open"></i></a>
+							<a href="#/utilisateurs/{{utilisateur.id}}/edit" class="btn btn-primary" title="Modifimer"><i class="glyphicon glyphicon-pencil"></i></a>
+							<a href="#" class="btn btn-danger" ng-click="supprimer(utilisateur.id)" title="Supprimer"><i class="glyphicon glyphicon-trash"></i></a>
 						</div>
 					</td>
 				</tr>

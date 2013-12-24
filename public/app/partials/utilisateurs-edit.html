@@ -1,7 +1,7 @@
-﻿			<div class="btn-group" ng-if="utilisateur.id">							
-				<a href="#/utilisateurs/{{utilisateur.id}}" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a>
-				<a href="#/utilisateurs/{{utilisateur.id}}/edit" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
-				<a href="#" class="btn btn-danger" ng-click="supprimer(utilisateur.id)" title="delete"><i class="glyphicon glyphicon-trash"></i></a>
+﻿			<a href="#/utilisateurs" class="btn btn-primary" title="Retour à la liste"><i class="glyphicon glyphicon-backward"></i></a>
+			<div class="btn-group" ng-if="utilisateur.id">							
+				<a href="#/utilisateurs/{{utilisateur.id}}" class="btn btn-primary" title="Consulter"><i class="glyphicon glyphicon-eye-open"></i></a>
+				<a href="#" class="btn btn-danger" ng-click="supprimer(utilisateur.id)" title="Supprimer"><i class="glyphicon glyphicon-trash"></i></a>
 			</div>
 			
 			<form novalidate class="form-horizontal"">
@@ -30,7 +30,7 @@
 					</div>
 				</div>
 				<div class="btn-group">							
-					<button class="btn" ng-click="reset()">Reset</button>
+					<button class="btn" ng-click="reset()">Rétablir</button>
 					<button class="btn btn-primary" ng-click="sauver()">Sauver</button>
 				</div>				
 			</form>
