@@ -1,43 +1,38 @@
-﻿			<div class="btn-group">
-				<a href="#/utilisateurs/{{utilisateur.id}}" class="btn btn-primary">Consulter</a>
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-					<span class="caret"></span>
-					<span class="sr-only">Toggle Dropdown</span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="#/utilisateurs/{{utilisateur.id}}/edit">Editer</a></li>
-					<li class="divider"></li>
-					<li><a href ng-click="delete({{utilisateur.id}})">Supprimer</a></li>
-				</ul>
+﻿			<div class="btn-group" ng-if="utilisateur.id">							
+				<a href="#/utilisateurs/{{utilisateur.id}}" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a>
+				<a href="#/utilisateurs/{{utilisateur.id}}/edit" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+				<a href="#" class="btn btn-danger" ng-click="supprimer(utilisateur.id)" title="delete"><i class="glyphicon glyphicon-trash"></i></a>
 			</div>
 			
 			<form novalidate class="form-horizontal"">
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Nom</label>
-				<div class="col-sm-6">
-				  <input type="text" class="form-control" ng-model="utilisateur.nom" />
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Nom</label>
+					<div class="col-sm-6">
+					  <input type="text" class="form-control" ng-model="utilisateur.nom" />
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Prenom</label>
-				<div class="col-sm-6">
-				  <input type="text" class="form-control" ng-model="utilisateur.prenom" />
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Prenom</label>
+					<div class="col-sm-6">
+					  <input type="text" class="form-control" ng-model="utilisateur.prenom" />
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Login</label>
-				<div class="col-sm-6">
-				  <input type="text" class="form-control" ng-model="utilisateur.login" />
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Login</label>
+					<div class="col-sm-6">
+					  <input type="text" class="form-control" ng-model="utilisateur.login" />
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Password</label>
-				<div class="col-sm-6">
-				  <input type="text" class="form-control" ng-model="utilisateur.password" />
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Password</label>
+					<div class="col-sm-6">
+					  <input type="text" class="form-control" ng-model="utilisateur.password" />
+					</div>
 				</div>
-			</div>
-				<button class="btn btn-primary" ng-click="reset()">Reset</button>
-				<button class="btn btn-primary" ng-click="sauver()">Sauver</button>
+				<div class="btn-group">							
+					<button class="btn" ng-click="reset()">Reset</button>
+					<button class="btn btn-primary" ng-click="sauver()">Sauver</button>
+				</div>				
 			</form>
 
 			
