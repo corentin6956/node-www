@@ -40,7 +40,7 @@ consulteoApp.controller('UtilisateursCtrl', ['$scope', '$routeParams', '$locatio
             return;
         }
 
-        utilisateursSrvc.delete({id: parseInt(id)}, {}, function (data) {
+        utilisateursSrvc.delete({id: id}, {}, function (data) {
             $location.path('/utilisateurs');
         });
     }
